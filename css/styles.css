@@ -42,8 +42,8 @@ a {
   text-decoration: none;
 }
 
-img, svg {
-  display: inline-block;
+img, svg, a {
+  display: block;
 }
 
 h1, h2, h3, p {
@@ -711,6 +711,8 @@ header {
 .modal .close-button:hover,
 .modal .close-button:focus {
   fill: var(--accent-color);
+  /* Удаляем стандартный аутлайн чтоб виден был свой в Chrome */
+  outline: 0;
 }
 
 .modal .header {
@@ -738,10 +740,6 @@ header {
   color: var(--secondary-text-color);
 }
 
-/* .modal label {
-  outline: black solid 1px;
-} */
-
 .modal .input-field {
   position: relative;
   margin-bottom: 10px;
@@ -755,6 +753,8 @@ header {
 
   fill: var(--main-black-color);
   transition: fill var(--timing) var(--timing-function);
+  /* Делаем иконки прозрачными для ховера в Chrome */
+  pointer-events: none;
 }
 
 .modal .input-field input:hover + .icon,
@@ -770,7 +770,6 @@ header {
   line-height: 1.14;
   letter-spacing: 0.01em;
 
-  /* color: var(--modal-form-fields-text-color); */
   background-color: transparent;
   border: 1px solid var(--modal-form-fields-bordrer-color);
   border-radius: 4px;
@@ -792,15 +791,15 @@ header {
 
 .modal .form-fields input:hover,
 .modal .form-fields input:focus,
+.modal .form-fields input:focus-within,
 .modal .form-fields textarea:hover,
 .modal .form-fields textarea:focus {
   border: 1px solid var(--accent-color);
+  /* Удаляем стандартный аутлайн чтоб виден был свой в Chrome */
+  outline: 0;
 }
 
 .modal .check {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   margin-bottom: 30px;
 }
 
@@ -827,7 +826,13 @@ header {
 
   transition: border-color var(--timing) var(--timing-function),
     background-color var(--timing) var(--timing-function),
-    fill var(--timing) var(--timing-function);
+    fill var(--timing) var(--timing-function),
+    box-shadow var(--timing) var(--timing-function);
+}
+
+.modal .check label:hover .svg-check,
+.modal .check input:focus + .svg-check {
+  box-shadow: 0 0 0 4px var(--accent-color-trasparent);
 }
 
 .modal .check a {
@@ -962,7 +967,8 @@ header {
   transition: transform var(--timing) var(--timing-function);
 }
 
-.projects.list a:hover .overlay {
+.projects.list a:hover .overlay,
+.projects.list a:focus .overlay {
   transform: translateY(0%);
 }
 
